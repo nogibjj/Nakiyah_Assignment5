@@ -2,9 +2,9 @@ import sqlite3
 import pandas as pd
 from tabulate import tabulate
 
-def logQuery(query="queryLog.md"):
+def logQuery(query):
     """adds to a query markdown file"""
-    with open(logFile, "a") as file:
+    with open("queryLog.md", "a") as file:
         file.write(f"```sql\n{query}\n```\n\n")
 
 def queryData():
@@ -84,6 +84,6 @@ def deleteRecord(employee_id):
     querySpecificRecord("EMP5000")
     return "Success"
 
-createOrUpdateRecord("EMP5000", 28, 'Data Analyst', 'Finance', 3, 'Onsite', 45, 'Anxiety', False)
-createOrUpdateRecord("EMP6000", 40, 'Data Scientist', 'IT', 15, 'Hybrid', 45, 'None', True)
-deleteRecord("EMP6000")
+# createOrUpdateRecord("EMP5000", 28, 'Data Analyst', 'Finance', 3, 'Onsite', 45, 'Anxiety', False)
+# createOrUpdateRecord("EMP6000", 40, 'Data Scientist', 'IT', 15, 'Hybrid', 45, 'None', True)
+# deleteRecord("EMP6000")

@@ -48,6 +48,3 @@ def loadData(data):
     connection.close()
 
     return "database1.db"
-
-
-
