@@ -2,27 +2,22 @@ import sqlite3
 import pandas as pd
 from tabulate import tabulate
 
-# Define a global variable for the log file
-logFile = "queryLog.md"
+def logQuery(query="queryLog.md"):
+    """adds to a query markdown file"""
+    with open(logFile, "a") as file:
+        file.write(f"```sql\n{query}\n```\n\n")
 
 def queryData():
     """Query the database for the top 20 rows of the worker_health table"""
     connection = sqlite3.connect("database1.db")
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM worker_health LIMIT 20")
-
     print("Top 20 rows of the worker_health table:")
     results = cursor.fetchall()
-    
-    # get headers
-    headers = [description[0] for description in cursor.description]
-
-    # Print each row
+    headers = [description[0] for description in cursor.description] # get headers
     for row in results:
         print(row)
-
-    # Create the table using tabulate
-    table = tabulate(results, headers=headers, tablefmt='pretty')
+    table = tabulate(results, headers=headers, tablefmt='pretty') # Create the table using tabulate
     print(table)
     connection.close()
     return "Success"
@@ -31,13 +26,10 @@ def querySpecificRecord(employee_id):
     """Query the database for a specific record based on Employee_ID"""
     connection = sqlite3.connect("database1.db")
     cursor = connection.cursor()
-    
-    # Query for the specific employee
-    query = cursor.execute("SELECT * FROM worker_health WHERE Employee_ID = ?", (employee_id,))
-    
+    cursor.execute("SELECT * FROM worker_health WHERE Employee_ID = ?", (employee_id,)) # Query for the specific employee
     results = cursor.fetchall()
     headers = [description[0] for description in cursor.description]
-    
+
     # If the record exists, print it
     if results:
         print(f"Record with Employee_ID {employee_id}:")
@@ -47,13 +39,6 @@ def querySpecificRecord(employee_id):
         print(f"No record found for Employee_ID {employee_id}")
     
     connection.close()
-
-
-def logQuery(query):
-    """adds to a query markdown file"""
-    with open(logFile, "a") as file:
-        file.write(f"```sql\n{query}\n```\n\n")
-
 
 def createOrUpdateRecord(id, age, jobrole, industry, experience, worklocation, hoursworked, mhcondition, access):
     connection = sqlite3.connect("database1.db")
@@ -100,4 +85,5 @@ def deleteRecord(employee_id):
     return "Success"
 
 createOrUpdateRecord("EMP5000", 28, 'Data Analyst', 'Finance', 3, 'Onsite', 45, 'Anxiety', False)
-deleteRecord("EMP5000")
+createOrUpdateRecord("EMP6000", 40, 'Data Scientist', 'IT', 15, 'Hybrid', 45, 'None', True)
+deleteRecord("EMP6000")

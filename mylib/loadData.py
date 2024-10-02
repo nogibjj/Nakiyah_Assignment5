@@ -1,7 +1,6 @@
 import pandas as pd
 import sqlite3
-from dotenv import load_dotenv
-import os
+
 
 def cleanData():
     df = pd.read_csv("Data/Impact_of_Remote_Work_on_Mental_Health.csv")
@@ -29,10 +28,6 @@ def cleanData():
 
 
 def loadData(data):
-    "Transforms and Loads Data into SQL DB"
-
-    # Load environment variables from .env file
-    load_dotenv()
     connection = sqlite3.connect("database1.db")
     cursor = connection.cursor()
     cursor.execute("DROP TABLE IF EXISTS worker_health")
