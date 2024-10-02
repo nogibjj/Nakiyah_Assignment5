@@ -35,8 +35,8 @@ def loadData(data):
     load_dotenv()
     connection = sqlite3.connect("database1.db")
     cursor = connection.cursor()
-    cursor.execute("DROP TABLE IF EXISTS table1")
-    create_table_query = """CREATE TABLE table1 (
+    cursor.execute("DROP TABLE IF EXISTS worker_health")
+    create_table_query = """CREATE TABLE worker_health (
     Employee_ID NUMERIC PRIMARY KEY,            
     Age INTEGER,                                
     Job_Role TEXT,                              
@@ -48,7 +48,7 @@ def loadData(data):
     Access_to_Mental_Health_Resources BOOLEAN); """
     cursor.execute(create_table_query)
     # Insert
-    cursor.executemany("INSERT INTO table1 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", data.values)
+    cursor.executemany("INSERT INTO worker_health VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", data.values)
     connection.commit()
     connection.close()
 

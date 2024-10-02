@@ -1,10 +1,6 @@
-"""
-Extract a dataset from a URL like Kaggle or data.gov. JSON or CSV formats tend to work well
-
-
-"""
 import requests
 
+# Extracting data from Github
 def extractData(url="https://raw.githubusercontent.com/viraterletska/Impact_of_Remote_Work_on_Mental_Health/main/data/Impact_of_Remote_Work_on_Mental_Health.csv", 
             file_path="Data/Impact_of_Remote_Work_on_Mental_Health.csv"):
     """Extract a URL to a file path"""
