@@ -12,7 +12,6 @@ def testExtract():
     assert result.returncode == 0
     assert "Extracting data..." in result.stdout
 
-
 def testLoad():
     result = subprocess.run(
         ["python3", "main.py", "load"],
@@ -68,15 +67,15 @@ def testCreate():
 
 
 def testDelete():
-    result1 = subprocess.run(
+    result = subprocess.run(
         ["python3", "main.py", "delete", "EMP6000"],
         capture_output=True,
         text=True,
         check=True,
     )
-    print("Delete specific query:", result1.stdout)
-    assert result1.returncode == 0
-    assert "Deleting selected query..." in result1.stdout
+    print("Delete specific query:", result.stdout)
+    assert result.returncode == 0
+    assert "Deleting selected query..." in result.stdout
 
 if __name__ == "__main__":
     testExtract()

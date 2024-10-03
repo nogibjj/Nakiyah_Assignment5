@@ -43,24 +43,6 @@ def main():
         id = sys.argv[2]
         deleteRecord(id)
 
-    # Function to generate Markdown output
-    def generateOutputMarkdown():
-        connection = sqlite3.connect("database1.db")
-        cursor = connection.cursor()
-        cursor.execute("SELECT * FROM worker_health LIMIT 20")
-        results = cursor.fetchall()
-        headers = [description[0] for description in cursor.description]
-        markdown_table = tabulate(results, headers=headers, tablefmt="pipe")
-
-        # Change filename to 'testOutputs.md' for consistency
-        with open("testOutputs.md", "w") as f:
-            f.write("# Worker Health Records\n\n")
-            f.write(markdown_table)
-
-        connection.close()
-
-    # Call the Markdown generation at the end of the main function
-    generateOutputMarkdown()
 
 if __name__ == "__main__":
     main()
