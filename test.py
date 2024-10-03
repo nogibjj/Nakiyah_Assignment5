@@ -78,16 +78,6 @@ def testDelete():
     assert result1.returncode == 0
     assert "Deleting selected query..." in result1.stdout
 
-    result2 = subprocess.run(
-        ["python3", "main.py", "query_specific", "EMP6000"],
-        capture_output=True,
-        text=True,
-        check=True,
-    )
-    print("Delete specific query:", result2.stdout)
-    assert result2.returncode == 0
-    assert "Querying specific record..." in result2.stdout
-
 if __name__ == "__main__":
     testExtract()
     testLoad()

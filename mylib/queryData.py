@@ -6,6 +6,17 @@ def logQuery(query):
     with open("queryLog.md", "a") as file:
         file.write(f"```sql\n{query}\n```\n\n")
 
+def logResults(description, query, results):
+    with open("testOutputs.md", "a") as file:
+        file.write(f"### {description}\n\n")
+        
+        file.write(f"**Query:**\n```sql\n{query}\n```\n\n")
+        headers = [description[0] for description in results.description]
+        table = tabulate(results.fetchall(), headers=headers, tablefmt="pipe")
+        
+        file.write(f"**Results:**\n{table}\n\n")
+        file.write("---\n\n")
+
 # Query the top 20 records
 def queryData(n): 
     connection = sqlite3.connect("database1.db")
@@ -74,7 +85,7 @@ def createOrUpdateRecord(id, age, jobrole, industry, experience, worklocation, h
     
     # Print a success message including the Employee_ID
     print(f"Record with Employee_ID {id} created successfully.")
-    # return querySpecificRecord(id)
+    return querySpecificRecord(id)
     
 def deleteRecord(employee_id):
     connection = sqlite3.connect("database1.db")
@@ -86,4 +97,4 @@ def deleteRecord(employee_id):
     # Log the query in the md file
     logQuery(f"DELETE FROM worker_health WHERE Employee_ID = '{employee_id}';")
     
-    # return querySpecificRecord(employee_id)
+    return querySpecificRecord(employee_id)
