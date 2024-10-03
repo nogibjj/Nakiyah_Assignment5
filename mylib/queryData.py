@@ -68,22 +68,19 @@ def createOrUpdateRecord(id, age, jobrole, industry, experience, worklocation, h
     connection.close()
 
     # Log the query in the md file
-    logQuery(
-        f"""INSERT INTO worker_health VALUES ({id}, {age}, {jobrole}, {industry}, {experience}, 
-        {worklocation}, {hoursworked}, {mhcondition}, {access});""")
+    logQuery(f"""INSERT INTO worker_health VALUES ({id}, {age}, {jobrole}, {industry}, {experience},
+             {worklocation}, {hoursworked}, {mhcondition}, {access});""")
     
     return querySpecificRecord(id)
 
 def deleteRecord(employee_id):
-    """Delete a records from the worker_health table based on the EmployeeID"""
     connection = sqlite3.connect("database1.db")
     cursor = connection.cursor()
     cursor.execute("DELETE FROM worker_health WHERE Employee_ID = ?", (employee_id,))
     connection.commit()
     connection.close()
-    querySpecificRecord("EMP5000")
-    return "Success"
 
-# createOrUpdateRecord("EMP5000", 28, 'Data Analyst', 'Finance', 3, 'Onsite', 45, 'Anxiety', False)
-# createOrUpdateRecord("EMP6000", 40, 'Data Scientist', 'IT', 15, 'Hybrid', 45, 'None', True)
-# deleteRecord("EMP6000")
+    # Log the query in the md file
+    logQuery(f"DELETE FROM worker_health WHERE Employee_ID = '{employee_id}';")
+    
+    return querySpecificRecord(employee_id)
