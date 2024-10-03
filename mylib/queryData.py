@@ -75,7 +75,7 @@ def createOrUpdateRecord(id, age, jobrole, industry, experience, worklocation, h
     return querySpecificRecord(id)
 
 def deleteRecord(employee_id):
-    """Delete a records from the MatchResultsDB table based on the EmployeeID"""
+    """Delete a records from the worker_health table based on the EmployeeID"""
     connection = sqlite3.connect("database1.db")
     cursor = connection.cursor()
     cursor.execute("DELETE FROM worker_health WHERE Employee_ID = ?", (employee_id,))

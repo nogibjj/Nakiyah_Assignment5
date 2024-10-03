@@ -12,6 +12,6 @@ def extractData(url="https://raw.githubusercontent.com/viraterletska/Impact_of_R
         with open(file_path, 'wb') as f:
             f.write(response.content)
         return file_path
+        
     else:
         return f"Failed to download file. Status code: {response.status_code}"
-

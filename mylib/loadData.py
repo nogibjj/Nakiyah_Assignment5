@@ -30,8 +30,9 @@ def cleanData():
 def loadData(data):
     connection = sqlite3.connect("database1.db")
     cursor = connection.cursor()
+
     cursor.execute("DROP TABLE IF EXISTS worker_health")
-    create_table_query = """CREATE TABLE worker_health (
+    createTableQuery = """CREATE TABLE worker_health (
     Employee_ID NUMERIC PRIMARY KEY,            
     Age INTEGER,                                
     Job_Role TEXT,                              
@@ -41,10 +42,12 @@ def loadData(data):
     Hours_Worked_Per_Week INTEGER,              
     Mental_Health_Condition TEXT,               
     Access_to_Mental_Health_Resources BOOLEAN); """
-    cursor.execute(create_table_query)
+    cursor.execute(createTableQuery)
+
     # Insert
-    cursor.executemany("INSERT INTO worker_health VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", data.values)
+    insertQuery = "INSERT INTO worker_health VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
+    cursor.executemany(insertQuery, data.values)
     connection.commit()
     connection.close()
 
-    return "database1.db"
+    return "Data successfully loaded into database1.db"
