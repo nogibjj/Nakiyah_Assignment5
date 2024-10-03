@@ -1,8 +1,8 @@
 import sqlite3
 from tabulate import tabulate
 
+# Markdown file to log the SQL functions and queries
 def logQuery(query):
-    """adds to a query markdown file"""
     with open("queryLog.md", "a") as file:
         file.write(f"```sql\n{query}\n```\n\n")
 
@@ -12,22 +12,19 @@ def queryData(n):
     cursor = connection.cursor()
     query = f"SELECT * FROM worker_health LIMIT {n}"
     cursor.execute(query)
-    print("Top 20 rows of the worker_health table:")
+    print(f"Top {n} rows of the worker_health table:")
     results = cursor.fetchall()
     headers = [description[0] for description in cursor.description] # get headers
-    for row in results:
-        print(row)
+    # for row in results:
+        # print(row)
     table = tabulate(results, headers=headers, tablefmt='pretty') # Create the table using tabulate
     print(table)
     connection.close()
     # Log the query in the md file
     logQuery(query)
 
-    
-
-# Query a specific record
+# Query the database for a specific record based on Employee_ID
 def querySpecificRecord(employee_id):
-    """Query the database for a specific record based on Employee_ID"""
     connection = sqlite3.connect("database1.db")
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM worker_health WHERE Employee_ID = ?", (employee_id,)) # Query for the specific employee
@@ -49,7 +46,7 @@ def querySpecificRecord(employee_id):
 def createOrUpdateRecord(id, age, jobrole, industry, experience, worklocation, hoursworked, mhcondition, access):
     connection = sqlite3.connect("database1.db")
     cursor = connection.cursor()
-    
+
     # Attempt to insert a new record
     try:
         cursor.execute(
@@ -75,8 +72,10 @@ def createOrUpdateRecord(id, age, jobrole, industry, experience, worklocation, h
     logQuery(f"""INSERT INTO worker_health VALUES ({id}, {age}, {jobrole}, {industry}, {experience},
              {worklocation}, {hoursworked}, {mhcondition}, {access});""")
     
-    return querySpecificRecord(id)
-
+    # Print a success message including the Employee_ID
+    print(f"Record with Employee_ID {id} created successfully.")
+    # return querySpecificRecord(id)
+    
 def deleteRecord(employee_id):
     connection = sqlite3.connect("database1.db")
     cursor = connection.cursor()
@@ -87,4 +86,4 @@ def deleteRecord(employee_id):
     # Log the query in the md file
     logQuery(f"DELETE FROM worker_health WHERE Employee_ID = '{employee_id}';")
     
-    return querySpecificRecord(employee_id)
+    # return querySpecificRecord(employee_id)

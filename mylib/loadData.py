@@ -8,7 +8,6 @@ def logQuery(query):
 
 def cleanData():
     df = pd.read_csv("Data/Impact_of_Remote_Work_on_Mental_Health.csv")
-    print(df.columns)
     dfClean = df[['Employee_ID', 'Age', 'Job_Role', 
                   'Industry', 'Years_of_Experience', 'Work_Location', 
                   'Hours_Worked_Per_Week', 'Mental_Health_Condition',
