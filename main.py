@@ -1,6 +1,4 @@
 import sys
-import sqlite3
-from tabulate import tabulate
 from mylib.extractData import extractData
 from mylib.loadData import loadData, cleanData
 from mylib.queryData import queryData, createOrUpdateRecord, querySpecificRecord, deleteRecord
