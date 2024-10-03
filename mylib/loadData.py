@@ -46,8 +46,8 @@ def loadData(data):
     connection.commit()
     connection.close()
 
-    # Log each row in the data for better tracking
-    for row in data.values:
-        logQuery(f"INSERT INTO worker_health VALUES ({', '.join(map(str, row))});")
+    # # Log each row in the data for better tracking
+    # for row in data.values:
+    #     logQuery(f"INSERT INTO worker_health VALUES ({', '.join(map(str, row))});")
 
     return "Data successfully loaded into database1.db"
