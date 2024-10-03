@@ -1,5 +1,6 @@
 import subprocess
 
+
 def testExtract():
     result = subprocess.run(
         ["python3", "main.py", "extract"],
@@ -36,13 +37,24 @@ def testQuery():
     assert result.returncode == 0
     assert "Top 20 rows of the worker_health table:" in result.stdout
 
+
 def testCreate():
     # First record
     result1 = subprocess.run(
-        ["python3", "main.py", "create",
-         "EMP5000", "28", "Data Analyst",
-         "Finance", "3", "Onsite",
-         "45", "Anxiety", "False"],
+        [
+            "python3",
+            "main.py",
+            "create",
+            "EMP5000",
+            "28",
+            "Data Analyst",
+            "Finance",
+            "3",
+            "Onsite",
+            "45",
+            "Anxiety",
+            "False",
+        ],
         capture_output=True,
         text=True,
         check=True,
@@ -53,10 +65,20 @@ def testCreate():
 
     # Second record
     result2 = subprocess.run(
-        ["python3", "main.py", "create",
-         "EMP6000", "40", "Data Scientist", 
-         "IT", "15", "Hybrid",
-         "40", "None", "True"],
+        [
+            "python3",
+            "main.py",
+            "create",
+            "EMP6000",
+            "40",
+            "Data Scientist",
+            "IT",
+            "15",
+            "Hybrid",
+            "40",
+            "None",
+            "True",
+        ],
         capture_output=True,
         text=True,
         check=True,
@@ -65,10 +87,19 @@ def testCreate():
     assert result2.returncode == 0
     assert "Record with Employee_ID EMP6000" in result2.stdout
 
+def testDelete():
+    result = subprocess.run(
+        ["python3", "main.py", "delete", "EMP5000"],
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    assert result.returncode == 0
+    assert "Deleting selected query..." in result.stdout
 
 if __name__ == "__main__":
     testExtract()
     testLoad()
     testQuery()
     testCreate()
-
+    testDelete()

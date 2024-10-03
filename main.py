@@ -29,13 +29,23 @@ def main():
         mhcondition = sys.argv[9]
         access = sys.argv[10]
         print("Create Record")
-        createOrUpdateRecord(id, age, jobrole, industry, experience, 
-                             worklocation, hoursworked, mhcondition, access)
-        
+        createOrUpdateRecord(
+            id,
+            age,
+            jobrole,
+            industry,
+            experience,
+            worklocation,
+            hoursworked,
+            mhcondition,
+            access,
+        )
+
     elif sys.argv[1] == "delete":
         print("Deleting selected query...")
         id = sys.argv[2]
         deleteRecord(id)
+
 
 if __name__ == "__main__":
     main()

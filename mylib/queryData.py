@@ -80,7 +80,7 @@ def createOrUpdateRecord(id, age, jobrole, industry, experience, worklocation, h
 def deleteRecord(employee_id):
     connection = sqlite3.connect("database1.db")
     cursor = connection.cursor()
-    cursor.execute("DELETE FROM worker_health WHERE Employee_ID = ?", (employee_id))
+    cursor.execute("DELETE FROM worker_health WHERE Employee_ID = ?", (employee_id,))
     connection.commit()
     connection.close()
 

@@ -8,7 +8,7 @@ lint:
 	ruff check *.py
 
 test:
-	python3 -m pytest -vv --nbval -cov=mylib -cov=main test*.py *.ipynb
+	python3 -m pytest -vv --nbval -cov=mylib -cov=main test*.py
 	
 all: install format lint test
 

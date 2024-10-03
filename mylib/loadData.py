@@ -14,14 +14,13 @@ def cleanData():
                   'Hours_Worked_Per_Week', 'Mental_Health_Condition',
                   'Access_to_Mental_Health_Resources']].copy()
 
-    # Convert Access_to_Mental_Health_Resources to boolean
+    # Converting Access_to_Mental_Health_Resources to boolean
     dfClean['Access_to_Mental_Health_Resources'] = dfClean['Access_to_Mental_Health_Resources'].map({'Yes': True, 'No': False})
     dfClean.loc[:, 'Age'] = pd.to_numeric(dfClean['Age'], errors='coerce')
     dfClean.loc[:, 'Years_of_Experience'] = pd.to_numeric(dfClean['Years_of_Experience'], errors='coerce')
     dfClean.loc[:, 'Hours_Worked_Per_Week'] = pd.to_numeric(dfClean['Hours_Worked_Per_Week'], errors='coerce')
     dfClean.dropna(inplace=True)
     return dfClean
-
 
 def loadData(data):
     connection = sqlite3.connect("database1.db")
@@ -46,8 +45,16 @@ def loadData(data):
     connection.commit()
     connection.close()
 
-    # # Log each row in the data for better tracking
-    # for row in data.values:
-    #     logQuery(f"INSERT INTO worker_health VALUES ({', '.join(map(str, row))});")
+    # Log each row in the data for better tracking
+    logQuery("""CREATE TABLE worker_health (
+    Employee_ID NUMERIC PRIMARY KEY,            
+    Age INTEGER,                                
+    Job_Role TEXT,                              
+    Industry TEXT,                              
+    Years_of_Experience INTEGER,                
+    Work_Location TEXT,                         
+    Hours_Worked_Per_Week INTEGER,              
+    Mental_Health_Condition TEXT,               
+    Access_to_Mental_Health_Resources BOOLEAN);""")
 
-    return "Data successfully loaded into database1.db"
+    logQuery(f"Inserted {len(data)} rows from the CSV file into the worker_health table.")
