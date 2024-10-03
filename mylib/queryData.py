@@ -6,11 +6,12 @@ def logQuery(query):
     with open("queryLog.md", "a") as file:
         file.write(f"```sql\n{query}\n```\n\n")
 
-def queryData():
-    """Query the database for the top 20 rows of the worker_health table"""
+# Query the top 20 records
+def queryData(n): 
     connection = sqlite3.connect("database1.db")
     cursor = connection.cursor()
-    cursor.execute("SELECT * FROM worker_health LIMIT 20")
+    query = f"SELECT * FROM worker_health LIMIT {n}"
+    cursor.execute(query)
     print("Top 20 rows of the worker_health table:")
     results = cursor.fetchall()
     headers = [description[0] for description in cursor.description] # get headers
@@ -19,8 +20,12 @@ def queryData():
     table = tabulate(results, headers=headers, tablefmt='pretty') # Create the table using tabulate
     print(table)
     connection.close()
-    return "Success"
+    # Log the query in the md file
+    logQuery(query)
 
+    
+
+# Query a specific record
 def querySpecificRecord(employee_id):
     """Query the database for a specific record based on Employee_ID"""
     connection = sqlite3.connect("database1.db")
@@ -36,8 +41,10 @@ def querySpecificRecord(employee_id):
         print(table)
     else:
         print(f"No record found for Employee_ID {employee_id}")
-    
+
     connection.close()
+    # Log the query in the md file
+    logQuery(f"SELECT * FROM worker_health WHERE Employee_ID = {employee_id}")
 
 def createOrUpdateRecord(id, age, jobrole, industry, experience, worklocation, hoursworked, mhcondition, access):
     connection = sqlite3.connect("database1.db")
@@ -62,10 +69,8 @@ def createOrUpdateRecord(id, age, jobrole, industry, experience, worklocation, h
             WHERE Employee_ID = ?
             """,
             (age, jobrole, industry, experience, worklocation, hoursworked, mhcondition, access, id),)
-        
     connection.commit()
     connection.close()
-
     # Log the query in the md file
     logQuery(f"""INSERT INTO worker_health VALUES ({id}, {age}, {jobrole}, {industry}, {experience},
              {worklocation}, {hoursworked}, {mhcondition}, {access});""")

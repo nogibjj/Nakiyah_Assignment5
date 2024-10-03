@@ -16,7 +16,7 @@ def main():
 
     elif sys.argv[1] == "query":
         print("Querying data...")
-        queryData()
+        queryData(20)
 
     elif sys.argv[1] == "create":
         id = sys.argv[2]
@@ -31,6 +31,11 @@ def main():
         print("Create Record")
         createOrUpdateRecord(id, age, jobrole, industry, experience, 
                              worklocation, hoursworked, mhcondition, access)
+        
+    elif sys.argv[1] == "delete":
+        print("Deleting selected query...")
+        id = sys.argv[2]
+        deleteRecord(id)
 
 if __name__ == "__main__":
     main()
