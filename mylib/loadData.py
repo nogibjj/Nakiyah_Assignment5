@@ -1,28 +1,24 @@
 import pandas as pd
 import sqlite3
 
+def logQuery(query):
+    """adds to a query markdown file"""
+    with open("queryLog.md", "a") as file:
+        file.write(f"```sql\n{query}\n```\n\n")
 
 def cleanData():
     df = pd.read_csv("Data/Impact_of_Remote_Work_on_Mental_Health.csv")
     print(df.columns)
-    dfClean = df[['Employee_ID', 
-                  'Age', 
-                  'Job_Role', 
-                  'Industry',
-                  'Years_of_Experience', 
-                  'Work_Location', 
+    dfClean = df[['Employee_ID', 'Age', 'Job_Role', 
+                  'Industry', 'Years_of_Experience', 'Work_Location', 
                   'Hours_Worked_Per_Week', 'Mental_Health_Condition',
                   'Access_to_Mental_Health_Resources']].copy()
 
     # Convert Access_to_Mental_Health_Resources to boolean
     dfClean['Access_to_Mental_Health_Resources'] = dfClean['Access_to_Mental_Health_Resources'].map({'Yes': True, 'No': False})
-    
-    # Convert numeric columns to correct types and handle NaNs
     dfClean.loc[:, 'Age'] = pd.to_numeric(dfClean['Age'], errors='coerce')
     dfClean.loc[:, 'Years_of_Experience'] = pd.to_numeric(dfClean['Years_of_Experience'], errors='coerce')
     dfClean.loc[:, 'Hours_Worked_Per_Week'] = pd.to_numeric(dfClean['Hours_Worked_Per_Week'], errors='coerce')
-    
-    # Drop rows with NaN values
     dfClean.dropna(inplace=True)
     return dfClean
 
@@ -49,5 +45,9 @@ def loadData(data):
     cursor.executemany(insertQuery, data.values)
     connection.commit()
     connection.close()
+
+    # Log each row in the data for better tracking
+    for row in data.values:
+        logQuery(f"INSERT INTO worker_health VALUES ({', '.join(map(str, row))});")
 
     return "Data successfully loaded into database1.db"

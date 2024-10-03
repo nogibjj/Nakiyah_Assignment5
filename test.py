@@ -65,6 +65,7 @@ def testCreate():
     assert result2.returncode == 0
     assert "Record with Employee_ID EMP6000" in result2.stdout
 
+
 if __name__ == "__main__":
     testExtract()
     testLoad()
