@@ -1,8 +1,6 @@
 import subprocess
-import os
 
 def testExtract():
-    """tests extract()"""
     result = subprocess.run(
         ["python3", "main.py", "extract"],
         capture_output=True,
@@ -16,7 +14,6 @@ def testExtract():
 
 
 def testLoad():
-    """tests the load() function"""
     result = subprocess.run(
         ["python3", "main.py", "load"],
         capture_output=True,
@@ -28,19 +25,49 @@ def testLoad():
     assert result.returncode == 0
     assert "Transforming data..." in result.stdout
 
-# def testCreate():
-#     # First record
-#     result1 = subprocess.run(
-#         ["python3", "main.py", "create",
-#          "EMP5000", "28", "Data Analyst",
-#          "Finance", "3", "Onsite",
-#          "45", "Anxiety", "False"],
-#         capture_output=True,
-#         text=True,
-#         check=True,
-#     )
-#     print("Create Output 1:", result1.stdout)  # Debugging line
-#     assert result1.returncode == 0
-#     assert "Record with Employee_ID EMP5000" in result1.stdout
 
+def testQuery():
+    result = subprocess.run(
+        ["python3", "main.py", "query"],
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    assert result.returncode == 0
+    assert "Top 20 rows of the worker_health table:" in result.stdout
+
+def testCreate():
+    # First record
+    result1 = subprocess.run(
+        ["python3", "main.py", "create",
+         "EMP5000", "28", "Data Analyst",
+         "Finance", "3", "Onsite",
+         "45", "Anxiety", "False"],
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    print("Create Output 1:", result1.stdout)  # Debugging line
+    assert result1.returncode == 0
+    assert "Record with Employee_ID EMP5000" in result1.stdout
+
+    # Second record
+    result2 = subprocess.run(
+        ["python3", "main.py", "create",
+         "EMP6000", "40", "Data Scientist", 
+         "IT", "15", "Hybrid",
+         "40", "None", "True"],
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    print("Create Output 2:", result2.stdout)  # Debugging line
+    assert result2.returncode == 0
+    assert "Record with Employee_ID EMP6000" in result2.stdout
+
+if __name__ == "__main__":
+    testExtract()
+    testLoad()
+    testQuery()
+    testCreate()
 
