@@ -42,41 +42,6 @@ def querySpecificRecord(employee_id):
     connection.close()
     logQuery(f"SELECT * FROM worker_health WHERE Employee_ID = {employee_id}")
 
-# def createOrUpdateRecord(id, age, jobrole, industry, experience, worklocation, hoursworked, mhcondition, access):
-#     connection = sqlite3.connect("database1.db")
-#     cursor = connection.cursor()
-
-#     # Attempt to insert a new record
-#     try:
-#         cursor.execute(
-#             """
-#             INSERT INTO worker_health 
-#             (Employee_ID, Age, Job_Role, Industry, Years_of_Experience, Work_Location, Hours_Worked_Per_Week, Mental_Health_Condition, Access_to_Mental_Health_Resources) 
-#             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-#             """,
-#             (id, age, jobrole, industry, experience, worklocation, hoursworked, mhcondition, access),)
-#     except sqlite3.IntegrityError:
-#         # If a UNIQUE constraint error occurs, update the existing record
-#         cursor.execute(
-#             """
-#             UPDATE worker_health SET 
-#             Age = ?, Job_Role = ?, Industry = ?, Years_of_Experience = ?, Work_Location = ?, 
-#             Hours_Worked_Per_Week = ?, Mental_Health_Condition = ?, Access_to_Mental_Health_Resources = ? 
-#             WHERE Employee_ID = ?
-#             """,
-#             (age, jobrole, industry, experience, worklocation, hoursworked, mhcondition, access, id),)
-#     connection.commit()
-#     connection.close()
-#     # Log the query in the md file
-#     logQuery(f"""INSERT INTO worker_health VALUES ({id}, {age}, {jobrole}, {industry}, {experience},
-#              {worklocation}, {hoursworked}, {mhcondition}, {access});""")
-    
-#     # Print a success message including the Employee_ID
-#     print(f"Record with Employee_ID {id} created successfully.")
-#     return querySpecificRecord(id)
-    
-
-
 def createRecord(id, age, jobrole, industry, experience, worklocation, hoursworked, mhcondition, access):
     """Creates a new record in the worker_health table if the Employee_ID doesn't already exist."""
     connection = sqlite3.connect("database1.db")
