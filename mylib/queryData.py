@@ -6,7 +6,6 @@ def logQuery(query):
     with open("queryLog.md", "a") as file:
         file.write(f"```sql\n{query}\n```\n\n")
 
-
 # Query the top 20 records
 def queryData(n): 
     connection = sqlite3.connect("database1.db")
@@ -19,6 +18,7 @@ def queryData(n):
     # for row in results:
         # print(row)
     table = tabulate(results, headers=headers, tablefmt='pretty') # Create the table using tabulate
+    print(f"Top {n} rows of wokrker_health table")
     print(table)
     connection.close()
     logQuery(query)  # Log the query in the md file
@@ -54,7 +54,7 @@ def createRecord(id, age, jobrole, industry, experience, worklocation, hourswork
     if record:
         print(f"Cannot create a new record. A record with Employee_ID {id} already exists.")
         return f"Cannot create a new record. A record with Employee_ID {id} already exists."
-
+    
     # Proceed to create a new record if it doesn't exist
     cursor.execute(
         """
@@ -109,4 +109,5 @@ def deleteRecord(employee_id):
 
     # Log the query in the md file
     logQuery(f"DELETE FROM worker_health WHERE Employee_ID = '{employee_id}';")
+    print(f"Record with Employee_ID {id} deleted successfully.")
     return querySpecificRecord(employee_id)

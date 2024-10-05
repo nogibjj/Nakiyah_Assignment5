@@ -1,6 +1,7 @@
 import subprocess
 import os
 
+
 def writeToMD(content):
     with open("testOutputs.md", "a") as f:
         f.write(content + "\n\n")
@@ -10,14 +11,10 @@ def logOutput(result, description):
     writeToMD(f"### {description}")
     writeToMD(f"**Command:** `{ ' '.join(result.args) }`")
     writeToMD(f"**Return code:** {result.returncode}")
-    
+
     # Log STDOUT if available
     stdout_output = result.stdout if result.stdout else "(No output)"
     writeToMD(f"**STDOUT:**\n```plaintext\n{stdout_output}\n```")
-    
-    # Log STDERR if available
-    stderr_output = result.stderr if result.stderr else "(No error output)"
-    writeToMD(f"**STDERR:**\n```plaintext\n{stderr_output}\n```")
 
 
 def testExtract():
@@ -30,6 +27,7 @@ def testExtract():
     print("Stdout (Extract):", result.stdout)
     assert result.returncode == 0
     assert "Extracting data..." in result.stdout
+
 
 def testLoad():
     result = subprocess.run(
@@ -59,10 +57,20 @@ def testQuery():
 def testCreate():
     # First record
     result1 = subprocess.run(
-        ["python3", "main.py", "create",
-         "EMP90005", "28", "Data Analyst", 
-         "Finance", "3", "Onsite",
-         "45", "Anxiety", "False"],
+        [
+            "python3",
+            "main.py",
+            "create",
+            "EMP90005",
+            "28",
+            "Data Analyst",
+            "Finance",
+            "3",
+            "Onsite",
+            "45",
+            "Anxiety",
+            "False",
+        ],
         capture_output=True,
         text=True,
         check=True,
@@ -74,10 +82,20 @@ def testCreate():
 
     # Second record
     result2 = subprocess.run(
-        ["python3", "main.py", "create",
-         "EMP90006", "40", "Data Scientist",
-         "IT", "15", "Hybrid",
-         "40", "None", "True"],
+        [
+            "python3",
+            "main.py",
+            "create",
+            "EMP90006",
+            "40",
+            "Data Scientist",
+            "IT",
+            "15",
+            "Hybrid",
+            "40",
+            "None",
+            "True",
+        ],
         capture_output=True,
         text=True,
         check=True,
@@ -87,12 +105,23 @@ def testCreate():
     assert "Record with Employee_ID EMP90006" in result2.stdout
     logOutput(result2, "Add Record 2")
 
+
 def testUpdate():
     result = subprocess.run(
-        ["python3", "main.py", "update", 
-         "EMP90005", "28", "Software Engineer", 
-         "Tech", "3", "Onsite",
-         "45", "Anxiety", "False"],
+        [
+            "python3",
+            "main.py",
+            "update",
+            "EMP90005",
+            "28",
+            "Software Engineer",
+            "Tech",
+            "3",
+            "Onsite",
+            "45",
+            "Anxiety",
+            "False",
+        ],
         capture_output=True,
         text=True,
         check=True,
@@ -102,10 +131,10 @@ def testUpdate():
     assert "Updating selected record..." in result.stdout
     logOutput(result, "Update Record")
 
+
 def testDelete():
     result = subprocess.run(
-        ["python3", "main.py", "delete", 
-         "EMP90006"],
+        ["python3", "main.py", "delete", "EMP90006"],
         capture_output=True,
         text=True,
         check=True,
@@ -115,15 +144,15 @@ def testDelete():
     assert "Deleting selected query..." in result.stdout
     logOutput(result, "Delete Record")
 
+
 if __name__ == "__main__":
 
     # Clear the existing .md file if it exists
     if os.path.exists("testOutputs.md"):
         os.remove("testOutputs.md")
-   
+
     if os.path.exists("queryLog.md"):
         os.remove("queryLog.md")
-
 
     testExtract()
     testLoad()

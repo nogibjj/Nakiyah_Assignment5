@@ -3,6 +3,7 @@ from mylib.extractData import extractData
 from mylib.loadData import loadData, cleanData
 from mylib.queryData import queryData, createRecord, updateRecord, deleteRecord
 
+
 def main():
     if sys.argv[1] == "extract":
         print("Extracting data...")
@@ -28,8 +29,17 @@ def main():
         mhcondition = sys.argv[9]
         access = sys.argv[10]
         print("Create Record")
-        createRecord(id, age, jobrole, industry, experience,
-                     worklocation, hoursworked, mhcondition, access)
+        createRecord(
+            id,
+            age,
+            jobrole,
+            industry,
+            experience,
+            worklocation,
+            hoursworked,
+            mhcondition,
+            access,
+        )
 
     elif sys.argv[1] == "update":
         print("Updating selected record...")
@@ -42,13 +52,23 @@ def main():
         hoursworked = sys.argv[8]
         mhcondition = sys.argv[9]
         access = sys.argv[10]
-        updateRecord(id, age, jobrole, industry, experience, 
-                     worklocation, hoursworked, mhcondition, access)
+        updateRecord(
+            id,
+            age,
+            jobrole,
+            industry,
+            experience,
+            worklocation,
+            hoursworked,
+            mhcondition,
+            access,
+        )
 
     elif sys.argv[1] == "delete":
         print("Deleting selected query...")
         id = sys.argv[2]
         deleteRecord(id)
+
 
 if __name__ == "__main__":
     main()
