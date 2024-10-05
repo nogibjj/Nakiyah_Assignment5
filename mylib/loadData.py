@@ -55,5 +55,3 @@ def loadData(data):
     Hours_Worked_Per_Week INTEGER,              
     Mental_Health_Condition TEXT,               
     Access_to_Mental_Health_Resources BOOLEAN);""")
-
-    logQuery(f"Inserted {len(data)} rows from the CSV file into the worker_health table.")

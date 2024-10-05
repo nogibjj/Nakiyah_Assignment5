@@ -1,4 +1,23 @@
 import subprocess
+import os
+
+def writeToMD(content):
+    with open("testOutputs.md", "a") as f:
+        f.write(content + "\n\n")
+
+
+def logOutput(result, description):
+    writeToMD(f"### {description}")
+    writeToMD(f"**Command:** `{ ' '.join(result.args) }`")
+    writeToMD(f"**Return code:** {result.returncode}")
+    
+    # Log STDOUT if available
+    stdout_output = result.stdout if result.stdout else "(No output)"
+    writeToMD(f"**STDOUT:**\n```plaintext\n{stdout_output}\n```")
+    
+    # Log STDERR if available
+    stderr_output = result.stderr if result.stderr else "(No error output)"
+    writeToMD(f"**STDERR:**\n```plaintext\n{stderr_output}\n```")
 
 
 def testExtract():
@@ -34,6 +53,7 @@ def testQuery():
     print("Stdout (Query):", result.stdout)
     assert result.returncode == 0
     assert "Top 20 rows of the worker_health table:" in result.stdout
+    logOutput(result, "Top 20 Record")
 
 
 def testCreate():
@@ -50,6 +70,7 @@ def testCreate():
     print("Create Output 1:", result1.stdout)
     assert result1.returncode == 0
     assert "Record with Employee_ID EMP5000" in result1.stdout
+    logOutput(result1, "Add Record 1")
 
     # Second record
     result2 = subprocess.run(
@@ -64,6 +85,7 @@ def testCreate():
     print("Create Output 2:", result2.stdout)
     assert result2.returncode == 0
     assert "Record with Employee_ID EMP6000" in result2.stdout
+    logOutput(result2, "Add Record 2")
 
 
 def testDelete():
@@ -76,8 +98,18 @@ def testDelete():
     print("Delete specific query:", result.stdout)
     assert result.returncode == 0
     assert "Deleting selected query..." in result.stdout
+    logOutput(result, "Delete Record")
 
 if __name__ == "__main__":
+
+    # Clear the existing .md file if it exists
+    if os.path.exists("testOutputs.md"):
+        os.remove("testOutputs.md")
+   
+    if os.path.exists("queryLog.md"):
+        os.remove("queryLog.md")
+
+        
     testExtract()
     testLoad()
     testQuery()
