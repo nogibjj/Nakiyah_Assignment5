@@ -85,5 +85,4 @@ def deleteRecord(employee_id):
 
     # Log the query in the md file
     logQuery(f"DELETE FROM worker_health WHERE Employee_ID = '{employee_id}';")
-    
     return querySpecificRecord(employee_id)
