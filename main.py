@@ -31,10 +31,10 @@ def main():
         createOrUpdateRecord(id, age, jobrole, industry, experience,
                              worklocation, hoursworked, mhcondition, access)
         
-    elif sys.argv[1] == "query_specific":
-        print("Querying specific record...")
-        id = sys.argv[2]
-        querySpecificRecord(id)
+    # elif sys.argv[1] == "query_specific":
+    #     print("Querying specific record...")
+    #     id = sys.argv[2]
+    #     querySpecificRecord(id)
 
     elif sys.argv[1] == "delete":
         print("Deleting selected query...")

@@ -6,17 +6,6 @@ def logQuery(query):
     with open("queryLog.md", "a") as file:
         file.write(f"```sql\n{query}\n```\n\n")
 
-def logResults(description, query, results):
-    with open("testOutputs.md", "a") as file:
-        file.write(f"### {description}\n\n")
-        
-        file.write(f"**Query:**\n```sql\n{query}\n```\n\n")
-        headers = [description[0] for description in results.description]
-        table = tabulate(results.fetchall(), headers=headers, tablefmt="pipe")
-        
-        file.write(f"**Results:**\n{table}\n\n")
-        file.write("---\n\n")
-
 # Query the top 20 records
 def queryData(n): 
     connection = sqlite3.connect("database1.db")
