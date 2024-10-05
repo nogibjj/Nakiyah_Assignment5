@@ -37,73 +37,67 @@ Top 20 rows of the worker_health table:
 
 **STDERR:**
 ```plaintext
-(No error output)
+0.00s - Debugger warning: It seems that frozen modules are being used, which may
+0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+0.00s - to python to disable frozen modules.
+0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+
 ```
 
 ### Add Record 1
 
-**Command:** `python3 main.py create EMP5000 28 Data Analyst Finance 3 Onsite 45 Anxiety False`
+**Command:** `python3 main.py create EMP90005 28 Data Analyst Finance 3 Onsite 45 Anxiety False`
 
 **Return code:** 0
 
 **STDOUT:**
 ```plaintext
 Create Record
-Record with Employee_ID EMP5000 created successfully.
-Record with Employee_ID EMP5000:
+Record with Employee_ID EMP90005 created successfully.
+Record with Employee_ID EMP90005:
 +-------------+-----+--------------+----------+---------------------+---------------+-----------------------+-------------------------+-----------------------------------+
 | Employee_ID | Age |   Job_Role   | Industry | Years_of_Experience | Work_Location | Hours_Worked_Per_Week | Mental_Health_Condition | Access_to_Mental_Health_Resources |
 +-------------+-----+--------------+----------+---------------------+---------------+-----------------------+-------------------------+-----------------------------------+
-|   EMP5000   | 28  | Data Analyst | Finance  |          3          |    Onsite     |          45           |         Anxiety         |               False               |
+|  EMP90005   | 28  | Data Analyst | Finance  |          3          |    Onsite     |          45           |         Anxiety         |               False               |
 +-------------+-----+--------------+----------+---------------------+---------------+-----------------------+-------------------------+-----------------------------------+
 
 ```
 
 **STDERR:**
 ```plaintext
-(No error output)
+0.00s - Debugger warning: It seems that frozen modules are being used, which may
+0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+0.00s - to python to disable frozen modules.
+0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+
 ```
 
 ### Add Record 2
 
-**Command:** `python3 main.py create EMP6000 40 Data Scientist IT 15 Hybrid 40 None True`
+**Command:** `python3 main.py create EMP90006 40 Data Scientist IT 15 Hybrid 40 None True`
 
 **Return code:** 0
 
 **STDOUT:**
 ```plaintext
 Create Record
-Record with Employee_ID EMP6000 created successfully.
-Record with Employee_ID EMP6000:
+Record with Employee_ID EMP90006 created successfully.
+Record with Employee_ID EMP90006:
 +-------------+-----+----------------+----------+---------------------+---------------+-----------------------+-------------------------+-----------------------------------+
 | Employee_ID | Age |    Job_Role    | Industry | Years_of_Experience | Work_Location | Hours_Worked_Per_Week | Mental_Health_Condition | Access_to_Mental_Health_Resources |
 +-------------+-----+----------------+----------+---------------------+---------------+-----------------------+-------------------------+-----------------------------------+
-|   EMP6000   | 40  | Data Scientist |    IT    |         15          |    Hybrid     |          40           |          None           |               True                |
+|  EMP90006   | 40  | Data Scientist |    IT    |         15          |    Hybrid     |          40           |          None           |               True                |
 +-------------+-----+----------------+----------+---------------------+---------------+-----------------------+-------------------------+-----------------------------------+
 
 ```
 
 **STDERR:**
 ```plaintext
-(No error output)
-```
+0.00s - Debugger warning: It seems that frozen modules are being used, which may
+0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+0.00s - to python to disable frozen modules.
+0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
 
-### Delete Record
-
-**Command:** `python3 main.py delete EMP6000`
-
-**Return code:** 0
-
-**STDOUT:**
-```plaintext
-Deleting selected query...
-No record found for Employee_ID EMP6000
-
-```
-
-**STDERR:**
-```plaintext
-(No error output)
 ```
 
 ### Top 20 Record
@@ -150,19 +144,19 @@ Top 20 rows of the worker_health table:
 
 ### Add Record 1
 
-**Command:** `python3 main.py create EMP5000 28 Data Analyst Finance 3 Onsite 45 Anxiety False`
+**Command:** `python3 main.py create EMP90005 28 Data Analyst Finance 3 Onsite 45 Anxiety False`
 
 **Return code:** 0
 
 **STDOUT:**
 ```plaintext
 Create Record
-Record with Employee_ID EMP5000 created successfully.
-Record with Employee_ID EMP5000:
+Record with Employee_ID EMP90005 created successfully.
+Record with Employee_ID EMP90005:
 +-------------+-----+--------------+----------+---------------------+---------------+-----------------------+-------------------------+-----------------------------------+
 | Employee_ID | Age |   Job_Role   | Industry | Years_of_Experience | Work_Location | Hours_Worked_Per_Week | Mental_Health_Condition | Access_to_Mental_Health_Resources |
 +-------------+-----+--------------+----------+---------------------+---------------+-----------------------+-------------------------+-----------------------------------+
-|   EMP5000   | 28  | Data Analyst | Finance  |          3          |    Onsite     |          45           |         Anxiety         |               False               |
+|  EMP90005   | 28  | Data Analyst | Finance  |          3          |    Onsite     |          45           |         Anxiety         |               False               |
 +-------------+-----+--------------+----------+---------------------+---------------+-----------------------+-------------------------+-----------------------------------+
 
 ```
@@ -174,20 +168,44 @@ Record with Employee_ID EMP5000:
 
 ### Add Record 2
 
-**Command:** `python3 main.py create EMP6000 40 Data Scientist IT 15 Hybrid 40 None True`
+**Command:** `python3 main.py create EMP90006 40 Data Scientist IT 15 Hybrid 40 None True`
 
 **Return code:** 0
 
 **STDOUT:**
 ```plaintext
 Create Record
-Record with Employee_ID EMP6000 created successfully.
-Record with Employee_ID EMP6000:
+Record with Employee_ID EMP90006 created successfully.
+Record with Employee_ID EMP90006:
 +-------------+-----+----------------+----------+---------------------+---------------+-----------------------+-------------------------+-----------------------------------+
 | Employee_ID | Age |    Job_Role    | Industry | Years_of_Experience | Work_Location | Hours_Worked_Per_Week | Mental_Health_Condition | Access_to_Mental_Health_Resources |
 +-------------+-----+----------------+----------+---------------------+---------------+-----------------------+-------------------------+-----------------------------------+
-|   EMP6000   | 40  | Data Scientist |    IT    |         15          |    Hybrid     |          40           |          None           |               True                |
+|  EMP90006   | 40  | Data Scientist |    IT    |         15          |    Hybrid     |          40           |          None           |               True                |
 +-------------+-----+----------------+----------+---------------------+---------------+-----------------------+-------------------------+-----------------------------------+
+
+```
+
+**STDERR:**
+```plaintext
+(No error output)
+```
+
+### Update Record
+
+**Command:** `python3 main.py update EMP90005 28 Software Engineer Tech 3 Onsite 45 Anxiety False`
+
+**Return code:** 0
+
+**STDOUT:**
+```plaintext
+Updating selected record...
+Record with Employee_ID EMP90005 updated successfully.
+Record with Employee_ID EMP90005:
++-------------+-----+-------------------+----------+---------------------+---------------+-----------------------+-------------------------+-----------------------------------+
+| Employee_ID | Age |     Job_Role      | Industry | Years_of_Experience | Work_Location | Hours_Worked_Per_Week | Mental_Health_Condition | Access_to_Mental_Health_Resources |
++-------------+-----+-------------------+----------+---------------------+---------------+-----------------------+-------------------------+-----------------------------------+
+|  EMP90005   | 28  | Software Engineer |   Tech   |          3          |    Onsite     |          45           |         Anxiety         |               False               |
++-------------+-----+-------------------+----------+---------------------+---------------+-----------------------+-------------------------+-----------------------------------+
 
 ```
 
@@ -198,14 +216,14 @@ Record with Employee_ID EMP6000:
 
 ### Delete Record
 
-**Command:** `python3 main.py delete EMP6000`
+**Command:** `python3 main.py delete EMP90006`
 
 **Return code:** 0
 
 **STDOUT:**
 ```plaintext
 Deleting selected query...
-No record found for Employee_ID EMP6000
+No record found for Employee_ID EMP90006
 
 ```
 

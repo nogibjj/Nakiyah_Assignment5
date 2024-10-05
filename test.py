@@ -60,7 +60,7 @@ def testCreate():
     # First record
     result1 = subprocess.run(
         ["python3", "main.py", "create",
-         "EMP5000", "28", "Data Analyst", 
+         "EMP90005", "28", "Data Analyst", 
          "Finance", "3", "Onsite",
          "45", "Anxiety", "False"],
         capture_output=True,
@@ -69,13 +69,13 @@ def testCreate():
     )
     print("Create Output 1:", result1.stdout)
     assert result1.returncode == 0
-    assert "Record with Employee_ID EMP5000" in result1.stdout
+    assert "Record with Employee_ID EMP90005" in result1.stdout
     logOutput(result1, "Add Record 1")
 
     # Second record
     result2 = subprocess.run(
         ["python3", "main.py", "create",
-         "EMP6000", "40", "Data Scientist",
+         "EMP90006", "40", "Data Scientist",
          "IT", "15", "Hybrid",
          "40", "None", "True"],
         capture_output=True,
@@ -84,13 +84,28 @@ def testCreate():
     )
     print("Create Output 2:", result2.stdout)
     assert result2.returncode == 0
-    assert "Record with Employee_ID EMP6000" in result2.stdout
+    assert "Record with Employee_ID EMP90006" in result2.stdout
     logOutput(result2, "Add Record 2")
 
+def testUpdate():
+    result = subprocess.run(
+        ["python3", "main.py", "update", 
+         "EMP90005", "28", "Software Engineer", 
+         "Tech", "3", "Onsite",
+         "45", "Anxiety", "False"],
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    print("Update specific query:", result.stdout)
+    assert result.returncode == 0
+    assert "Updating selected record..." in result.stdout
+    logOutput(result, "Update Record")
 
 def testDelete():
     result = subprocess.run(
-        ["python3", "main.py", "delete", "EMP6000"],
+        ["python3", "main.py", "delete", 
+         "EMP90006"],
         capture_output=True,
         text=True,
         check=True,
@@ -109,9 +124,10 @@ if __name__ == "__main__":
     if os.path.exists("queryLog.md"):
         os.remove("queryLog.md")
 
-        
+
     testExtract()
     testLoad()
     testQuery()
     testCreate()
+    testUpdate()
     testDelete()

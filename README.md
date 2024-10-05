@@ -10,18 +10,18 @@ Nakiyah_Assignment5/
 ├── .gitignore
 ├── Data/
 │   └── Impact_of_Remote_Work_on_Mental_Health.csv
-├── main.py
-├── test.py
-├── Makefile
 ├── mylib/
 │   ├── extractData.py
 │   ├── loadData.py
 │   └── queryData.py
+├── main.py
+├── test.py
+├── Makefile
 ├── README.md
 ├── Requirements.txt
 ├── database1.db
 ├── testOutputs.md
-└── query_log.md
+└── queryLog.md
 
 ```
 ## Purpose of this project
@@ -29,22 +29,21 @@ Nakiyah_Assignment5/
 Project Overview
 This project implements an ETL (Extract, Transform, Load) pipeline that processes data from external public datasets and stores it in a SQLite database. The key stages of the pipeline are as follows:
 
-Extract:
+Extract: Data is fetched from a public GitHub repository and loaded into a local CSV file.
+Transform & Load: The CSV file is cleaned and pre-processed, ensuring the data is structured correctly and ready for analysis. The cleaned data is then loaded into a SQLite .db file, where it can be efficiently queried for further analysis.
 
-Data is fetched from a public GitHub repository and loaded into a local CSV file.
-Transform:
+Querying: Verifies that SQL queries, such as retrieving the top 20 rows from a specific table, return the expected results.
 
-The CSV file is cleaned and pre-processed, ensuring the data is structured correctly and ready for analysis. This may include handling missing values, normalizing data types, and filtering out invalid entries.
-Load:
-
-The cleaned data is then loaded into a SQLite .db file, where it can be efficiently queried for further analysis.
-Query:
-
-SQL queries are run against the database to retrieve insights or verify data integrity.
-Unit Testing
+Query & Unit Testing 
 To ensure the robustness of the ETL process, a suite of unit tests is included. These tests are executed using Python's subprocess module to simulate the full pipeline, testing each stage for correctness. The tests validate the following:
 
-Extraction: Ensures that the data is correctly fetched and saved as a CSV file.
-Transformation: Verifies that the cleaning and transformation steps produce the expected results.
-Loading: Confirms that the data is properly inserted into the SQLite database.
-SQL Queries: Checks the results of SQL queries for accuracy and consistency.
+Create using testCreate()
+```python
+python3 main.py create EMP5000 28 "Data Analyst" Finance 3 Onsite 45 Anxiety False
+python3 main.py create EMP6000 40 "Data Scientist" IT 15 Hybrid 40 None True
+```
+
+Read using testRead()
+```python
+python3 main.py query
+```

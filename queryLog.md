@@ -12,37 +12,29 @@ CREATE TABLE worker_health (
 ```
 
 ```sql
-CREATE TABLE worker_health: 5000 rows
-```
-
-```sql
 SELECT * FROM worker_health LIMIT 20
 ```
 
 ```sql
-INSERT INTO worker_health VALUES (EMP5000, 28, Data Analyst, Finance, 3,
-             Onsite, 45, Anxiety, False);
+INSERT INTO worker_health 
+                 (Employee_ID, Age, Job_Role, Industry, Years_of_Experience, Work_Location, Hours_Worked_Per_Week, 
+                  Mental_Health_Condition, Access_to_Mental_Health_Resources) 
+                 VALUES (EMP90005, 28, Data Analyst, Finance, 3, Onsite, 45, Anxiety, False);
 ```
 
 ```sql
-SELECT * FROM worker_health WHERE Employee_ID = EMP5000
+SELECT * FROM worker_health WHERE Employee_ID = EMP90005
 ```
 
 ```sql
-INSERT INTO worker_health VALUES (EMP6000, 40, Data Scientist, IT, 15,
-             Hybrid, 40, None, True);
+INSERT INTO worker_health 
+                 (Employee_ID, Age, Job_Role, Industry, Years_of_Experience, Work_Location, Hours_Worked_Per_Week, 
+                  Mental_Health_Condition, Access_to_Mental_Health_Resources) 
+                 VALUES (EMP90006, 40, Data Scientist, IT, 15, Hybrid, 40, None, True);
 ```
 
 ```sql
-SELECT * FROM worker_health WHERE Employee_ID = EMP6000
-```
-
-```sql
-DELETE FROM worker_health WHERE Employee_ID = 'EMP6000';
-```
-
-```sql
-SELECT * FROM worker_health WHERE Employee_ID = EMP6000
+SELECT * FROM worker_health WHERE Employee_ID = EMP90006
 ```
 
 ```sql
@@ -63,28 +55,44 @@ SELECT * FROM worker_health LIMIT 20
 ```
 
 ```sql
-INSERT INTO worker_health VALUES (EMP5000, 28, Data Analyst, Finance, 3,
-             Onsite, 45, Anxiety, False);
+INSERT INTO worker_health 
+                 (Employee_ID, Age, Job_Role, Industry, Years_of_Experience, Work_Location, Hours_Worked_Per_Week, 
+                  Mental_Health_Condition, Access_to_Mental_Health_Resources) 
+                 VALUES (EMP90005, 28, Data Analyst, Finance, 3, Onsite, 45, Anxiety, False);
 ```
 
 ```sql
-SELECT * FROM worker_health WHERE Employee_ID = EMP5000
+SELECT * FROM worker_health WHERE Employee_ID = EMP90005
 ```
 
 ```sql
-INSERT INTO worker_health VALUES (EMP6000, 40, Data Scientist, IT, 15,
-             Hybrid, 40, None, True);
+INSERT INTO worker_health 
+                 (Employee_ID, Age, Job_Role, Industry, Years_of_Experience, Work_Location, Hours_Worked_Per_Week, 
+                  Mental_Health_Condition, Access_to_Mental_Health_Resources) 
+                 VALUES (EMP90006, 40, Data Scientist, IT, 15, Hybrid, 40, None, True);
 ```
 
 ```sql
-SELECT * FROM worker_health WHERE Employee_ID = EMP6000
+SELECT * FROM worker_health WHERE Employee_ID = EMP90006
 ```
 
 ```sql
-DELETE FROM worker_health WHERE Employee_ID = 'EMP6000';
+UPDATE worker_health SET 
+                 Age = 28, Job_Role = Software Engineer, Industry = Tech, Years_of_Experience = 3, 
+                 Work_Location = Onsite, Hours_Worked_Per_Week = 45, Mental_Health_Condition = Anxiety, 
+                 Access_to_Mental_Health_Resources = False 
+                 WHERE Employee_ID = EMP90005;
 ```
 
 ```sql
-SELECT * FROM worker_health WHERE Employee_ID = EMP6000
+SELECT * FROM worker_health WHERE Employee_ID = EMP90005
+```
+
+```sql
+DELETE FROM worker_health WHERE Employee_ID = 'EMP90006';
+```
+
+```sql
+SELECT * FROM worker_health WHERE Employee_ID = EMP90006
 ```
 
